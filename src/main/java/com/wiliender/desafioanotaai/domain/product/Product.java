@@ -1,8 +1,10 @@
 package com.wiliender.desafioanotaai.domain.product;
 
+import com.wiliender.desafioanotaai.domain.category.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "products")
@@ -10,5 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @NoArgsConstructor
 public class Product {
-
+    @Id
+    private String id;
+    private String title;
+    private String ownerId;
+    private String description;
+    private Integer price;
+    private Category category;
 }
