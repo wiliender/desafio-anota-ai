@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -32,7 +33,7 @@ public class CategoryService {
         Category category = this.repository.findById(id)
                 .orElseThrow(CategoryNotFoundException::new);
         if(!categoryData.title().isEmpty()) category.setTitle(categoryData.title());
-        if(!categoryData.description().isEmpty()) category.setDescription(categoryData.title());
+        if(!categoryData.description().isEmpty()) category.setDescription(categoryData.description());
 
         this.repository.save(category);
 
@@ -43,6 +44,10 @@ public class CategoryService {
         Category category = this.repository.findById(id)
                 .orElseThrow(CategoryNotFoundException::new);
 
-        this.repository.save(category);
+        this.repository.delete(category);
+    }
+
+    public Optional<Category> getById(String id){
+        return this.repository.findById(id);
     }
 }
